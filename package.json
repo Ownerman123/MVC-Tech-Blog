@@ -4,7 +4,8 @@
   "description": "A fullstack application for posting blog post and comments about tech",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "charles shumway",
   "license": "MIT",
