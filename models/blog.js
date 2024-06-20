@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Blog extends Model {
-  checkPassword(loginPw) {
-    return bcrypt.compareSync(loginPw, this.password);
-  }
+//   checkPassword(loginPw) {
+//     return bcrypt.compareSync(loginPw, this.password);
+//   }
 }
 
 Blog.init(
@@ -28,7 +28,7 @@ Blog.init(
         defaultValue: DataTypes.NOW
     },
     user_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false, 
       references: {
         model: 'user',
