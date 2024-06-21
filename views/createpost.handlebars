@@ -12,7 +12,9 @@
                   </div>
                   <div>
                       <label for="content" class="block mb-2 text-sm font-medium text-nicegreywhite">Spill the bologna (content)</label>
-                      <input type="textarea" name="content" id="content" placeholder="Blog N/A....." class="bg-light border border-mid text-nicegreywhite sm:text-sm rounded-lg focus:outline-none focus:ring-dark focus:border-dark block w-full p-2.5 " required="true">
+                      <textarea  name="content" id="content" placeholder="Blog N/A....." class="resize-y bg-light border border-mid text-nicegreywhite sm:text-sm rounded-lg focus:outline-none focus:ring-dark focus:border-dark block w-full p-2.5 " required="true"></textarea>
+                    <input type="number" name="userid" id="userid" hidden="true" value="{{user.id}}">
+
                   </div>
                   
                   <button type="submit" class="w-full text-nicegreywhite bg-middark hover:bg-light focus:ring-4 focus:outline-none focus:ring-dark font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Post it!</button>
@@ -20,7 +22,7 @@
               </form>
           </div>
 </section>
-<script src="./js/createpost.js"></script>
+<script src="/js/createpost.js"></script>
 
 
 {{else}}

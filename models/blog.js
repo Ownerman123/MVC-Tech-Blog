@@ -2,9 +2,10 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 class Blog extends Model {
-//   checkPassword(loginPw) {
-//     return bcrypt.compareSync(loginPw, this.password);
-//   }
+  addlike() {
+     
+     this.likes = this.likes++;
+   }
 }
 
 Blog.init(
@@ -27,7 +28,15 @@ Blog.init(
         type: DataTypes.DATEONLY,
         defaultValue: DataTypes.NOW
     },
-    user_id: {
+    likes:{
+      type: DataTypes.INTEGER,
+      defaultValue: 0,
+    },
+    likedby: {
+      type: DataTypes.JSON,
+      defaultValue: [],
+    },
+      user_id: {
       type: DataTypes.INTEGER,
       allowNull: false, 
       references: {

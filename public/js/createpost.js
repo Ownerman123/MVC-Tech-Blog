@@ -8,6 +8,7 @@ function loginUser(e){
     const formData = {
         title: document.getElementById('title').value,
         content: document.getElementById('content').value,
+        user_id: document.getElementById('userid').value
       };
 
 
