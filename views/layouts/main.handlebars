@@ -16,7 +16,7 @@
             mid: '#004052',
             middark: '#00303D',
             dark: '#002029',
-            poppinred: '#9E0031',
+            poppinred: '#BF3030',
             nicegreywhite: '#D7D9CE',
           }
         }
@@ -26,9 +26,9 @@
 </head>
 <body>
     
-    <header class="p-14 ">
+    <header class="p-14 bg-middark">
 	<div class="container flex justify-between h-16 min-h-max mx-auto">
-		<a rel="noopener noreferrer" href="#" aria-label="Back to homepage" class="flex items-center pt-6 pr-4">
+		<a rel="noopener noreferrer" href="/" aria-label="Back to homepage" class="flex items-center pt-6 pr-4">
 			<img src="/images/blogNA.png" height="200px" alt="BlogNA home link">
 		</a>
 		<ul class="items-stretch hidden space-x-3 md:flex">
@@ -36,17 +36,24 @@
 				<a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">View Posts</a>
 			</li>
 			<li class="flex">
-				<a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Create post</a>
+				<a rel="noopener noreferrer" href="/createpost" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Create post</a>
 			</li>
             <li class="flex">
-				<a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">View your posts</a>
+				<a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Your posts</a>
+			</li>
+            {{#unless logged_in}}
+			<li class="flex">
+				<a rel="noopener noreferrer" href="/signup" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Signup</a>
 			</li>
 			<li class="flex">
-				<a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Signup</a>
+				<a rel="noopener noreferrer" href="/login" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Login</a>
 			</li>
-			<li class="flex">
-				<a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Login</a>
+            {{/unless}}
+            {{#if logged_in}}
+            <li class="flex">
+				<a rel="noopener noreferrer" href="#" id="logout"class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Logout</a>
 			</li>
+            {{/if}}
 		</ul>
 		<button class="flex justify-end p-4 md:hidden">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
@@ -58,7 +65,7 @@
     <main>
     {{{body}}}
     </main>
-    <footer>
+   
         <footer class="object-bottom bg-dark text-poppinred">
 	<div class="container flex flex-col p-4 mx-auto md:p-8 lg:flex-row ">
 		<ul class="self-center py-6 space-y-4 text-center sm:flex sm:space-y-0 sm:justify-around sm:space-x-4 lg:flex-1 lg:justify-center">
@@ -71,4 +78,7 @@
    
 </body>
 <script src="./js/home.js"></script>
+{{#if logged_in}}
+<script src="./js/logout.js"></script>
+{{/if}}
 </html>
