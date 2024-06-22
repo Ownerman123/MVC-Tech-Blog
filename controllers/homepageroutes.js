@@ -85,11 +85,20 @@ router.get("/post/:id", async (req, res) => {
             {
              model: User,
              attributes: ['name']
+            },
+            {
+                model: Comment,
+                attributes:['content','date_created'],
+                include: [{
+                    model: User,
+                    attributes: ['name']
+                }]
             }
         ],
     });
     
     const post = dbpost.get({plain: true});
+    console.log('LOOK A POST', post);
    
 
     res.render('post', {

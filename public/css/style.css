@@ -17,8 +17,6 @@ footer{
     background-color: var(--dark);
     margin: 0px;
     width: 100%;
-    position: absolute;
-    bottom: 0;
     
 }
 footer h4 {

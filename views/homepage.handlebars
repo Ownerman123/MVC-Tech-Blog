@@ -1,11 +1,9 @@
-<h1 class="text-xl p-3 underline text-center lg:justify-center">Welcome to BlogN/A{{#if logged_in}} {{user.name}}!{{/if}}</h1>
+<h1 class="text-5xl p-3 underline text-center lg:justify-center">Welcome to BlogN/A{{#if logged_in}} {{user.name}}!{{/if}}</h1>
 
-<p class="text-nicegreywhite ml-4">
-    The only site for bloging about coding bologna. Thats right as long as its at least code adjacent its welcome here.
+<p class="text-nicegreywhite text-center ml-4">
+    The only site for bloging about coding bologna. <br> Thats right as long as its at least code adjacent its welcome here.
 </p>
-<div>
-    {{> listingcard}}
-</div>
+
 {{#unless logged_in}}
 <p class="text-nicegreywhite text-center object-bottom">
 Looks like you might be new here get started by

@@ -6,79 +6,76 @@
     <link rel="stylesheet" href="/css/style.css">
     <title>BlogN/A</title>
     <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            light: '#00607A',
-            midlight: '#005066',
-            mid: '#004052',
-            middark: '#00303D',
-            dark: '#002029',
-            poppinred: '#BF3030',
-            nicegreywhite: '#D7D9CE',
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              light: '#00607A',
+              midlight: '#005066',
+              mid: '#004052',
+              middark: '#00303D',
+              dark: '#002029',
+              poppinred: '#BF3030',
+              nicegreywhite: '#D7D9CE',
+            }
           }
         }
       }
-    }
-  </script>
+    </script>
 </head>
-<body>
-    
+<body class="min-h-screen flex flex-col">
     <header class="p-14 bg-middark">
-	<div class="container flex justify-between h-16 min-h-max mx-auto">
-		<a rel="noopener noreferrer" href="/" aria-label="Back to homepage" class="flex items-center pt-6 pr-4">
-			<img src="/images/blogNA.png" height="200px" alt="BlogNA home link">
-		</a>
-		<ul class="items-stretch hidden space-x-3 md:flex">
-			<li class="flex">
-				<a rel="noopener noreferrer" href="/viewposts" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">View Posts</a>
-			</li>
-			<li class="flex">
-				<a rel="noopener noreferrer" href="/createpost" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Create post</a>
-			</li>
-            <li class="flex">
-				<a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Your posts</a>
-			</li>
-            {{#unless logged_in}}
-			<li class="flex">
-				<a rel="noopener noreferrer" href="/signup" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Signup</a>
-			</li>
-			<li class="flex">
-				<a rel="noopener noreferrer" href="/login" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Login</a>
-			</li>
-            {{/unless}}
-            {{#if logged_in}}
-            <li class="flex">
-				<a rel="noopener noreferrer" href="#" id="logout"class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Logout</a>
-			</li>
-            {{/if}}
-		</ul>
-		<button class="flex justify-end p-4 md:hidden">
-			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-			</svg>
-		</button>
-	</div>
-</header>
-    <main>
-    {{{body}}}
+        <div class="container flex justify-between h-16 min-h-max mx-auto">
+            <a rel="noopener noreferrer" href="/" aria-label="Back to homepage" class="flex items-center pt-6 pr-4">
+                <img src="/images/blogNA.png" height="200px" alt="BlogNA home link">
+            </a>
+            <ul class="items-stretch hidden space-x-3 md:flex">
+                <li class="flex">
+                    <a rel="noopener noreferrer" href="/viewposts" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">View Posts</a>
+                </li>
+                <li class="flex">
+                    <a rel="noopener noreferrer" href="/createpost" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Create post</a>
+                </li>
+                <li class="flex">
+                    <a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Your posts</a>
+                </li>
+                {{#unless logged_in}}
+                <li class="flex">
+                    <a rel="noopener noreferrer" href="/signup" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Signup</a>
+                </li>
+                <li class="flex">
+                    <a rel="noopener noreferrer" href="/login" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Login</a>
+                </li>
+                {{/unless}}
+                {{#if logged_in}}
+                <li class="flex">
+                    <a rel="noopener noreferrer" href="#" id="logout" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Logout</a>
+                </li>
+                {{/if}}
+            </ul>
+            <button class="flex justify-end p-4 md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+    <main class="flex-grow p-4">
+        {{{body}}}
     </main>
-   
-        <footer class="object-bottom bg-dark text-poppinred">
-	<div class="container flex flex-col p-4 mx-auto md:p-8 lg:flex-row ">
-		<ul class="self-center py-6 space-y-4 text-center sm:flex sm:space-y-0 sm:justify-around sm:space-x-4 lg:flex-1 lg:justify-center">
-			<li>About</li>
-			<li>Blog</li>
-			<li>Contact</li>
-		</ul>
-	</div>
-</footer>
-   
+    <footer class="bg-dark text-poppinred p-4">
+        <div class="flex flex-col p-2 mx-auto md:p-8 lg:flex-row">
+            <ul class="py-6 space-y-4 text-center sm:flex sm:space-y-0 sm:justify-around sm:space-x-4 lg:flex-1 lg:justify-center">
+                <li>About</li>
+                <li>Blog</li>
+                <li>Contact</li>
+            </ul>
+        </div>
+    </footer>
+    <script src="/js/home.js"></script>
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
 </body>
-<script src="/js/home.js"></script>
-{{#if logged_in}}
-<script src="/js/logout.js"></script>
-{{/if}}
 </html>
