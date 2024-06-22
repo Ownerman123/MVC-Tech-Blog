@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const {User, Blog, Comment} = require('../models');
-const { getAttributes } = require('../models/user');
+const checkSessionTimeout = require('../utils/checksess');
+
 
 router.get('/', async (req, res) => {
 
@@ -20,7 +21,13 @@ router.get('/', async (req, res) => {
 router.get("/login", async (req, res) => {
     try{
 
-        res.render('login', {})
+        if(req.query.redirected){
+            res.render('login', {redirected: true});
+        }else{
+            res.render('login', {});
+        }
+
+        
 
     }catch (err) {
         res.status(500).json(err);
@@ -36,15 +43,40 @@ router.get("/signup", async (req, res) => {
     }
 });
 
-router.get("/yourposts", async (req, res) => {
+router.get("/yourposts", checkSessionTimeout, async (req, res) => {
+
+    
+
     try{
+        const dbblogs = await Blog.findAll({
+            
+            where: {user_id: req.session.user.id},
+            include: [
+                        {
+                        model: User,
+                        attributes: ['name'],
+                         },
+                    ],
+        });
+        
+          const blogs = dbblogs.map((blog) => blog.get({plain: true}));
+        res.render('posts', {
+            logged_in: req.session.logged_in,
+            user: req.session.user,
+            blogs,
+
+        })
         
     }catch (err) {
         res.status(500).json(err);
     }
+
 });
 
-router.get("/createpost", async (req, res) => {
+router.get("/createpost",checkSessionTimeout, async (req, res) => {
+
+  
+
     try{
         res.render('createpost',{
             logged_in: req.session.logged_in,
@@ -53,6 +85,8 @@ router.get("/createpost", async (req, res) => {
     }catch (err) {
         res.status(500).json(err);
     }
+
+
 });
 
 router.get("/viewposts", async (req, res) => {
@@ -77,7 +111,7 @@ router.get("/viewposts", async (req, res) => {
     }
 });
 
-router.get("/post/:id", async (req, res) => {
+router.get("/post/:id",checkSessionTimeout, async (req, res) => {
 
     try{
     const dbpost = await Blog.findByPk(req.params.id, {

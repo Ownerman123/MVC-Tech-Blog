@@ -13,7 +13,11 @@ const PORT = process.env.PORT || 3001;
 
 const sess = {
   secret: process.env.SESSION_SECRET || 'super secret',
-  cookie: {},
+  cookie: { 
+    maxAge: 60 * 60 * 1000, // Session timeout in milliseconds (e.g., 1 hour)
+    // secure: true, // Uncomment if using HTTPS
+     sameSite: 'strict' 
+    },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
@@ -23,6 +27,10 @@ const sess = {
 
 app.use(session(sess));
 
+
+
+// Apply the middleware to all routes or specific routes where session timeout needs to be checked
+
 const hbs = exphbs.create({ helpers });
 
 app.engine('handlebars', hbs.engine);
@@ -31,6 +39,7 @@ app.set('view engine', 'handlebars');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use(routes);
 

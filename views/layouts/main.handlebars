@@ -34,12 +34,14 @@
                 <li class="flex">
                     <a rel="noopener noreferrer" href="/viewposts" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">View Posts</a>
                 </li>
+                {{#if logged_in}}
                 <li class="flex">
                     <a rel="noopener noreferrer" href="/createpost" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Create post</a>
                 </li>
                 <li class="flex">
-                    <a rel="noopener noreferrer" href="#" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Your posts</a>
+                    <a rel="noopener noreferrer" href="/yourposts" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Your posts</a>
                 </li>
+                {{/if}}
                 {{#unless logged_in}}
                 <li class="flex">
                     <a rel="noopener noreferrer" href="/signup" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Signup</a>

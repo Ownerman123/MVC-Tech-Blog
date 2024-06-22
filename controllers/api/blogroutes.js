@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const {Blog,User,Comment} = require('../../models')
+const checkSessionTimeout = require('../../utils/checksess');
 
-router.post('/', async (req, res)=> {
+router.post('/', checkSessionTimeout, async (req, res)=> {
 
     try{
     const newBlog = await Blog.create(req.body);
@@ -11,7 +12,7 @@ router.post('/', async (req, res)=> {
 }
 });
 
-router.put('/like', async (req, res)=> {
+router.put('/like',checkSessionTimeout, async (req, res)=> {
 
     try{
     const blog =  await Blog.findByPk(req.body.post_id);

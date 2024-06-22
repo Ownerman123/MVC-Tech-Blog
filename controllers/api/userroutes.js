@@ -27,12 +27,18 @@ router.post('/login', async (req, res) => {
     }
 
 
-    req.session.save(() => {
-        req.session.user = user;
-        req.session.logged_in = true;
-        
+    req.session.user = user;
+    req.session.logged_in = true;
+    req.session.lastActivity = Date.now(); // Correct usage of Date.now()
+
+    req.session.save((err) => {
+        if (err) {
+            console.error('Error saving session:', err);
+            return res.status(500).json({ message: 'Session save error' });
+        }
+
         res.json({ user: user, message: 'You are now logged in!' });
-      });
+    });
     }catch (err){
         console.log(err);
         res.status(400).json(err);

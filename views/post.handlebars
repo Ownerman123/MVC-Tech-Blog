@@ -20,7 +20,7 @@
 		</p>
 	</div>
 	<div class="p-5 bg-middark text-nicegreywhite">
-		<p>{{post.content}}</p>
+		<pre class="overflow-auto whitespace-pre-wrap break-words">{{post.content}}</pre>
 	</div>
 </article>
 
@@ -30,10 +30,16 @@
 <div class="flex justify-center">
     <form id="commentform" class="space-y-4 md:space-y-6 bg-midlight rounded-lg w-10/12 pt-2 pb-2 " action="#">
         <label for="comment" class="ml-4 pt-4 text-nicegreywhite">Add a Comment.</label>
+    {{#if logged_in}}
         <textarea name="comment" id="comment" placeholder="Blog N/A....." class="resize-y m-4 bg-light border border-mid text-nicegreywhite sm:text-sm rounded-lg focus:outline-none focus:ring-dark focus:border-dark block w-11/12 p-2.5 " required="true"></textarea>
         <button type="submit" class=" text-nicegreywhite bg-middark hover:bg-light focus:ring-4 focus:outline-none focus:ring-dark font-medium rounded-lg text-sm px-5 py-2.5 text-center w-fit m-6 p-2 " onclick="addComment()">add comment</button>
+    {{else}}
+    <p class="text-nicegreywhite"><a href="/login" class="text-poppinred">Login</a> to comment on some bologna!</p>
+
+    {{/if}}
     </form>
 </div>
-
+{{#if logged_in}}
 <script src="/js/commentAdder.js"></script>
 <script src="/js/likeAdder.js"></script>
+{{/if}}
