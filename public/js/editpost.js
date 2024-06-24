@@ -10,13 +10,14 @@ function editPost(e){
         content: document.getElementById('content').value,
         user_id: document.getElementById('userid').value
       };
+      console.log(formData);
 
 
 
       disableFormElements(true);
     
-      fetch('/api/blog/', {
-        method: 'POST',
+      fetch(`/api/blog/${formData.user_id}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -31,15 +32,15 @@ function editPost(e){
       .then(data => {
         // Handle successful API response
         console.log('posted:', data);
-        alert('post created!');
+        alert('post Edited!');
         window.location = '/';
         //! load new page with new post 
         // Optionally, redirect to another page or perform additional actions
       })
       .catch(error => {
         // Handle errors
-        console.error('Error creating post :', error);
-        alert('Failed to create post');
+        console.error('Error Editing post :', error);
+        alert('Failed to save post');
       })
       .finally(() => {
         // Re-enable form elements after API call completes

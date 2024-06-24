@@ -59,10 +59,13 @@ router.get("/yourposts", checkSessionTimeout, async (req, res) => {
                     ],
         });
         
-          const blogs = dbblogs.map((blog) => blog.get({plain: true}));
+          let blogs = dbblogs.map((blog) => blog.get({plain: true}));
+          
+           
         res.render('posts', {
             logged_in: req.session.logged_in,
             user: req.session.user,
+            onusersposts:  true,
             blogs,
 
         })
@@ -81,6 +84,30 @@ router.get("/createpost",checkSessionTimeout, async (req, res) => {
         res.render('createpost',{
             logged_in: req.session.logged_in,
             user: req.session.user,
+        })
+    }catch (err) {
+        res.status(500).json(err);
+    }
+
+
+});
+
+router.get("/editpost/:id",checkSessionTimeout, async (req, res) => {
+
+  
+
+    try{
+
+        const oldData = await Blog.findByPk(req.params.id);
+
+
+
+        res.render('editpost',{
+            logged_in: req.session.logged_in,
+            user: req.session.user,
+            oldtitle: oldData.title,
+            oldcontent: oldData.content,
+            post_id: req.params.id,
         })
     }catch (err) {
         res.status(500).json(err);

@@ -1,6 +1,20 @@
 <h2 class="text-5xl text-nicegreywhite underline m-2">Look At All that BlogN/A!</h2>
+{{logThis onusersposts}}
+{{#if onusersposts}}
 {{#each blogs as |blog|}}
 
-{{> listingcard}}
+      
+        {{> yourlistingcards}}
+{{/each}}
+{{/if}}
+
+
+{{#unless onusersposts}}
+{{#each blogs as |blog|}}
+
+          {{> listingcard}}
 
 {{/each}}
+{{/unless}}
+
+	<script src="/js/posthandler.js"></script>

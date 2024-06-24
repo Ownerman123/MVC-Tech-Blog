@@ -3,17 +3,17 @@
   
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
               <h1 class="text-xl font-bold leading-tight tracking-tight text-nicegreywhite md:text-2xl shadow-2">
-                  Lets create a post!
+                  Lets Edit your post!
               </h1>
               <form id="postform" class="space-y-4 md:space-y-6" action="#">
                   <div>
                       <label for="title" class="block mb-2 text-sm font-medium text-nicegreywhite">Give your post a title</label>
-                      <input type="text" name="title" id="title" class="bg-light border border-mid text-nicegreywhite sm:text-sm rounded-lg focus:outline-none focus:ring-dark focus:border-dark block w-full p-2.5 " placeholder="The Swankiest of titles" required="true">
+                      <input type="text" name="title" id="title" class="bg-light border border-mid text-nicegreywhite sm:text-sm rounded-lg focus:outline-none focus:ring-dark focus:border-dark block w-full p-2.5 " value="{{oldtitle}}" placeholder="Swanky Title" required="true">
                   </div>
                   <div>
                       <label for="content" class="block mb-2 text-sm font-medium text-nicegreywhite">Spill the bologna (content)</label>
-                      <textarea  name="content" id="content" placeholder="Blog N/A....." class="resize-y bg-light border border-mid text-nicegreywhite sm:text-sm rounded-lg focus:outline-none focus:ring-dark focus:border-dark block w-full p-2.5 " required="true"></textarea>
-                    <input type="number" name="userid" id="userid" hidden="true" value="{{user.id}}">
+                      <textarea  name="content" id="content" placeholder="Blog N/A....." class="resize-y bg-light border border-mid text-nicegreywhite sm:text-sm rounded-lg focus:outline-none focus:ring-dark focus:border-dark block w-full p-2.5 " required="true">{{oldcontent}}</textarea>
+                    <input type="number" name="userid" id="userid" hidden="true" value="{{post_id}}">
 
                   </div>
                   
@@ -22,9 +22,9 @@
               </form>
           </div>
 </section>
-<script src="/js/createpost.js"></script>
+<script src="/js/editpost.js"></script>
 
 
 {{else}}
-    <p class="m-3 text-center"><a class="text-poppinred font-bold underline"  href= '/login'>Login</a> or <a class="text-poppinred font-bold underline"  href= '/signup'>signup</a>to create a post!</p>
+    <p class="m-3 text-center"><a class="text-poppinred font-bold underline"  href= '/login'>Login</a> or <a class="text-poppinred font-bold underline"  href= '/signup'>signup</a>to edit a post!</p>
 {{/if}}

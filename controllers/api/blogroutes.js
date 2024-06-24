@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { compareSync } = require('bcrypt');
 const {Blog,User,Comment} = require('../../models')
 const checkSessionTimeout = require('../../utils/checksess');
 
@@ -16,10 +17,9 @@ router.put('/like',checkSessionTimeout, async (req, res)=> {
 
     try{
     const blog =  await Blog.findByPk(req.body.post_id);
-    console.log('OVER HERE', blog.likedby);
     const likedby = blog.likedby;
     const likes = blog.likes;
-    console.log('RIGHT HERE', likedby);
+    
     
 
     if(!likedby.includes(req.body.user_id))
@@ -38,6 +38,49 @@ router.put('/like',checkSessionTimeout, async (req, res)=> {
     }catch (err) {
         res.status(500).json(err)
     }
+});
+
+router.delete('/:id', async (req, res) => {
+
+    try{
+
+    await Blog.destroy({where: {id: req.params.id}});
+        res.status(200).json({message: 'deleted as planned'})
+    } catch (err){
+        res.status(500).json(err);
+    }
+
+});
+router.put('/:id', async (req, res)=> {
+
+    try{
+        console.log(req);
+
+
+        await Blog.update(
+            
+            //updateable fields
+            {
+                title: req.body.title,
+                content: req.body.content,
+            },
+        
+            {where: { id: req.params.id}},
+    
+        ).then((updatedPost) => {
+            res.json(updatedPost);
+        }).catch((err) => {
+            console.log(err);
+            res.json(err);
+        });
+
+     
+
+    }catch (err){
+        res.status(500).json(err);
+    }
+
+
 });
 
 module.exports= router;

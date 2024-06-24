@@ -1,0 +1,62 @@
+	
+    <article class="flex flex-col bg-dark m-4 text-nicegreywhite">
+				
+		<div class="flex flex-col flex-1 p-6 ">
+					<a rel="noopener noreferrer" href="/post/{{id}}"></a>
+			<div class="flex wrap justify-between">
+					<a rel="noopener noreferrer" href="/post/{{id}}" class="text-xs tracking-wider uppercase hover:underline dark:text-violet-600">Posted by: {{user.name}}</a> 
+				
+					<div class="inline-flex items-center rounded-md shadow-sm">
+					    <button 
+							onclick="editPost({{id}})"
+					        class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-l-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
+					        <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+					                stroke="currentColor" class="w-6 h-6">
+					                <path stroke-linecap="round" stroke-linejoin="round"
+					                    d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+					            </svg>
+					        </span>
+					        <span class="hidden md:inline-block">Edit</span>
+					    </button>
+					    <button 
+							onclick="viewPost({{id}})"
+					        class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border-y border-slate-200 font-medium px-4 py-2 inline-flex space-x-1 items-center">
+					        <span>
+					            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+					                stroke="currentColor" class="w-6 h-6">
+					                <path stroke-linecap="round" stroke-linejoin="round"
+					                    d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+					                <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+					            </svg>
+					        </span>
+					        <span class="hidden md:inline-block">View</span>
+					    </button>
+					    <button 
+							onclick="deletePost({{id}})"
+					        class="text-slate-800 hover:text-blue-600 text-sm bg-white hover:bg-slate-100 border border-slate-200 rounded-r-lg font-medium px-4 py-2 inline-flex space-x-1 items-center">
+					        <span>
+					            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+					                stroke="currentColor" class="w-6 h-6">
+					                <path stroke-linecap="round" stroke-linejoin="round"
+					                    d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+					            </svg>
+					        </span>
+					        <span class="hidden md:inline-block">Delete</span>
+					    </button>
+					</div>
+					
+					</div>
+					<h3 class="flex-1 py-2 text-lg font-semibold leading-snug">{{title}}</h3>
+					<div class="flex flex-wrap justify-between pt-3 space-x-2 text-xs dark:text-gray-600">
+						<span> On: {{date_created}}</span>
+                        <button type="button" class="flex items-center p-1 space-x-1.5">
+				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-label="Number of likes" class="w-4 h-4 fill-current dark:text-violet-600">
+					<path d="M126.638,202.672H51.986a24.692,24.692,0,0,0-24.242,19.434,487.088,487.088,0,0,0-1.466,206.535l1.5,7.189a24.94,24.94,0,0,0,24.318,19.78h74.547a24.866,24.866,0,0,0,24.837-24.838V227.509A24.865,24.865,0,0,0,126.638,202.672ZM119.475,423.61H57.916l-.309-1.487a455.085,455.085,0,0,1,.158-187.451h61.71Z"></path>
+					<path d="M494.459,277.284l-22.09-58.906a24.315,24.315,0,0,0-22.662-15.706H332V173.137l9.573-21.2A88.117,88.117,0,0,0,296.772,35.025a24.3,24.3,0,0,0-31.767,12.1L184.693,222.937V248h23.731L290.7,67.882a56.141,56.141,0,0,1,21.711,70.885l-10.991,24.341L300,169.692v48.98l16,16H444.3L464,287.2v9.272L396.012,415.962H271.07l-86.377-50.67v37.1L256.7,444.633a24.222,24.222,0,0,0,12.25,3.329h131.6a24.246,24.246,0,0,0,21.035-12.234L492.835,310.5A24.26,24.26,0,0,0,496,298.531V285.783A24.144,24.144,0,0,0,494.459,277.284Z"></path>
+				</svg>
+				<span>{{likes}}</span>
+			</button>
+			</div>
+		</div>
+	</article>
+
