@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { compareSync } = require('bcrypt');
-const {Blog,User,Comment} = require('../../models')
+const {Blog,BlogUser,Comment} = require('../../models')
 const checkSessionTimeout = require('../../utils/checksess');
 
 router.post('/', checkSessionTimeout, async (req, res)=> {

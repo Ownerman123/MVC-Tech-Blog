@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const {User, Blog, Comment} = require('../models');
+const {BlogUser, Blog, Comment} = require('../models');
 const checkSessionTimeout = require('../utils/checksess');
 
 
@@ -53,7 +53,7 @@ router.get("/yourposts", checkSessionTimeout, async (req, res) => {
             where: {user_id: req.session.user.id},
             include: [
                         {
-                        model: User,
+                        model: BlogUser,
                         attributes: ['name'],
                          },
                     ],
@@ -120,7 +120,7 @@ router.get("/viewposts", async (req, res) => {
     try{
         const dbblogs = await Blog.findAll({include: [
             {
-              model: User,
+              model: BlogUser,
               attributes: ['name'],
             },
           ],});
@@ -144,14 +144,14 @@ router.get("/post/:id",checkSessionTimeout, async (req, res) => {
     const dbpost = await Blog.findByPk(req.params.id, {
         include: [
             {
-             model: User,
+             model: BlogUser,
              attributes: ['name']
             },
             {
                 model: Comment,
                 attributes:['content','date_created'],
                 include: [{
-                    model: User,
+                    model: BlogUser,
                     attributes: ['name']
                 }]
             }

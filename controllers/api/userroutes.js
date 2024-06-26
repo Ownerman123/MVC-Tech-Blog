@@ -1,10 +1,10 @@
 const router = require('express').Router();
-const {User, Blog, Comment} = require('../../models');
+const {BlogUser, Blog, Comment} = require('../../models');
 const { destroy } = require('../../models/user');
 
 router.post('/', async (req, res) => {
     try{
-    const newUser = await User.create(req.body);
+    const newUser = await BlogUser.create(req.body);
     req.session.logged_in = true;
     req.session.user = newUser;
     res.status(200).json(newUser);
@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
 
 router.post('/login', async (req, res) => {
     try{
-    const user = await User.findOne({where: {email: req.body.email}});
+    const user = await BlogUser.findOne({where: {email: req.body.email}});
     if(!user){
         res.status(400).json({message: 'Incorrect email or password, please try again'});
         return;
