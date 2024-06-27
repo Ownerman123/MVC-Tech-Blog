@@ -8,7 +8,7 @@
 
 [Screenshot](#screenshot)
 
-[Deployed]{#deployed}
+[Deployed](#deployed)
 
 [License](#license)
 
