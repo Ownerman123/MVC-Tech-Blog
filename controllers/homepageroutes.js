@@ -5,12 +5,22 @@ const checkSessionTimeout = require('../utils/checksess');
 
 router.get('/', async (req, res) => {
 
-    //? maybe get blogs later
+    
     try{
+
+        const dbblogs = await Blog.findAll({include: [
+            {
+              model: BlogUser,
+              attributes: ['name'],
+            },
+          ],});
+        
+          let blogs = dbblogs.map((blog) => blog.get({plain: true}));
 
     res.render('homepage', {
         logged_in: req.session.logged_in,
         user: req.session.user,
+        blogs
     })
     }catch (err) {
         res.status(500).json(err);

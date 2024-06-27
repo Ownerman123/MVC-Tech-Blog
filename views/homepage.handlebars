@@ -10,3 +10,9 @@ Looks like you might be new here get started by
 <a class="text-poppinred font-bold underline"  href= '/signup'>Signing up here!</a>
 </p>
 {{/unless}}
+
+{{#each blogs as |blog|}}
+
+          {{> listingcard}}
+
+{{/each}}

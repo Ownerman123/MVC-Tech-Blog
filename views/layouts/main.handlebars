@@ -25,39 +25,39 @@
     </script>
 </head>
 <body class="min-h-screen flex flex-col">
-    <header class="p-14 bg-middark">
-        <div class="container flex justify-between h-16 min-h-max mx-auto">
-            <a rel="noopener noreferrer" href="/" aria-label="Back to homepage" class="flex items-center pt-6 pr-4">
+    <header class="p-4 bg-middark flex h-fit">
+        <div class="container flex justify-between  min-h-max  mx-auto h-fit items-center pl-4 ">
+            <a rel="noopener noreferrer" href="/" aria-label="Back to homepage" class="flex items-center  p-1">
                 <img src="/images/blogNA.png" height="200px" alt="BlogNA home link">
             </a>
-            <ul class="items-stretch hidden space-x-3 md:flex">
+            <ul id="nav-menu" class="hidden flex-col space-y-1 md:flex md:flex-row md:space-x-3  ">
                 <li class="flex">
-                    <a rel="noopener noreferrer" href="/viewposts" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">View Posts</a>
+                    <a rel="noopener noreferrer" href="/viewposts" class="flex max-h-16 px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-lg md:text-2xl shadow-xl">View Posts</a>
                 </li>
                 {{#if logged_in}}
                 <li class="flex">
-                    <a rel="noopener noreferrer" href="/createpost" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Create post</a>
+                    <a rel="noopener noreferrer" href="/createpost" class="flex max-h-16 px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-lg md:text-2xl shadow-xl">Create post</a>
                 </li>
                 <li class="flex">
-                    <a rel="noopener noreferrer" href="/yourposts" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Your posts</a>
+                    <a rel="noopener noreferrer" href="/yourposts" class="flex max-h-16 px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-lg md:text-2xl shadow-xl">Your posts</a>
                 </li>
                 {{/if}}
                 {{#unless logged_in}}
                 <li class="flex">
-                    <a rel="noopener noreferrer" href="/signup" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Signup</a>
+                    <a rel="noopener noreferrer" href="/signup" class="flex max-h-16 px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-lg md:text-2xl shadow-xl">Signup</a>
                 </li>
                 <li class="flex">
-                    <a rel="noopener noreferrer" href="/login" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Login</a>
+                    <a rel="noopener noreferrer" href="/login" class="flex max-h-16 px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-lg md:text-2xl shadow-xl">Login</a>
                 </li>
                 {{/unless}}
                 {{#if logged_in}}
                 <li class="flex">
-                    <a rel="noopener noreferrer" href="#" id="logout" class="flex items-center px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-2xl shadow-xl">Logout</a>
+                    <a rel="noopener noreferrer" href="#" id="logout" class="flex max-h-16 px-4 -mb-1 border-b-4 border-dark text-poppinred bg-mid text-lg md:text-2xl shadow-xl">Logout</a>
                 </li>
                 {{/if}}
             </ul>
-            <button class="flex justify-end p-4 md:hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+            <button id="hamburger" class="flex justify-end p-4 md:hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="#D7D9CE" class="w-6 h-6">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                 </svg>
             </button>
@@ -79,5 +79,11 @@
     {{#if logged_in}}
     <script src="/js/logout.js"></script>
     {{/if}}
+    <script>
+        document.getElementById('hamburger').addEventListener('click', function() {
+            var navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
